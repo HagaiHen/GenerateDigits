@@ -36,3 +36,12 @@ This is how the real digits looks like:
 This is how the generated digits looks like:
 
 ![150_1](https://github.com/HagaiHen/GenerateDigits/assets/76903853/65e49637-c131-470a-a7fd-d401afe863a7)
+
+### Getting Started
+- Clone the repository to your local machine.
+- Ensure that you have the necessary dependencies installed. You can find the required libraries in the requirements.txt file.
+```
+pip install -r requirements.txt
+```
+
+- Run main.py for start the training
