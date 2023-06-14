@@ -43,3 +43,5 @@ pip install -r requirements.txt
 ```
 
 - Run main.py for start the training
+
+By engaging in this project, you will gain hands-on experience with deep learning techniques, specifically in the field of GANs, and develop skills in generating realistic digit images.
