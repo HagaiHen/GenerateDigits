@@ -1,6 +1,3 @@
- 
-README.md
-@@ -1,36 +1,19 @@
 # Generate Handwritten Digits Using GAN
 
 ### The code implements a Generative Adversarial Network (GAN) using PyTorch to generate handwritten digit images from the MNIST dataset. Here's an overview of the steps:
