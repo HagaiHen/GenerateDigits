@@ -1,19 +1,38 @@
-During each epoch, the function iterates over batches of real samples and labels from the training data. Then, generate a sapce sample for the Generator. this data pass through the Generator, and give them also lables.
-we are combine the real and fake data.
+ 
+README.md
+@@ -1,36 +1,19 @@
+# Generate Handwritten Digits Using GAN
 
-now we pass the fake and real data to the descriminator and compare to the labels using the loss function. The gradients are backpropagated through the discriminator, and its parameters are updated using the optimizer.
+### The code implements a Generative Adversarial Network (GAN) using PyTorch to generate handwritten digit images from the MNIST dataset. Here's an overview of the steps:
 
-After training the discriminator, the function focuses on training the generator.
-we generate new sample space, and pass it to the Genartor to get samples. we pass it to the descriminator and calculate the loss of the generator. The gradients are backpropagated through the discriminator, and its parameters are updated using the optimizer. 
+- The MNIST training dataset is loaded using torchvision's datasets.MNIST with the specified root, train flag, download flag, and the defined transformation.
 
-The function then generates random latent space samples and passes them through the generator model to generate fake samples. Labels are created for the generated samples, distinguishing them from real samples.
+- The generator and discriminator models are initialized by creating instances of the Generator and Discriminator classes.
 
-Next, the function trains the discriminator by passing both real and generated samples through it. The discriminator's gradients are reset, and its predictions are compared with the corresponding labels to compute the discriminator loss. The gradients are backpropagated through the discriminator, and its parameters are updated using the optimizer.
+- The binary cross-entropy loss function (nn.BCELoss()) is defined to measure the difference between the predicted and target labels.
 
-After training the discriminator, the function focuses on training the generator. It generates new random latent space samples and passes them through the generator. The generated samples are then fed into the discriminator, and its predictions are compared with the real labels. The generator loss is calculated based on the discriminator's predictions.
+- Adam optimizers are created for both the discriminator and generator models using torch.optim.Adam. The respective model parameters and learning rate are provided.
 
-The gradients of the generator are reset, and backpropagation is performed to update the generator's parameters using the optimizer.
+### The Training Sequence
 
-The function prints the discriminator and generator losses for the current batch and proceeds to the next batch until all batches in the epoch are processed.
+During each epoch, the trainer function iterates over batches of real samples and labels from the training data. It then generates a set of random latent space samples for the generator. These latent space samples are passed through the generator, which produces fake samples. Both the real and fake samples are assigned corresponding labels.
 
-Overall, the trainer function drives the training process of the GAN, progressively improving the discriminator's ability to distinguish real and generated samples, while the generator learns to produce more realistic samples to fool the discriminator.
+The real and fake samples, along with their labels, are concatenated to create a combined set of samples. This combined set is then passed through the discriminator, which produces output predictions. The loss function is used to compare these predictions with the corresponding labels, calculating the discriminator loss.
+
+The gradients are backpropagated through the discriminator, and its parameters are updated using the optimizer_discriminator. This step focuses on training the discriminator to distinguish between real and fake samples effectively.
+
+After training the discriminator, the trainer function moves on to training the generator. It generates a new set of random latent space samples and passes them through the generator. The output generated samples are then passed through the discriminator again. The loss function is used to calculate the generator loss by comparing the discriminator's output with the labels indicating the samples as real.
+
+The gradients are backpropagated through the generator, and its parameters are updated using the optimizer_generator. This step aims to train the generator to produce samples that can deceive the discriminator into classifying them as real.
+
+In summary, the code performs the training of a GAN using the MNIST dataset. It trains the generator and discriminator models and generates samples using the trained generator.
+
+### Examples
+
+This is how the real digits looks like:
+
+![real](https://github.com/HagaiHen/GenerateDigits/assets/76903853/ef25b53b-9148-4c0f-95e2-b27d1ce21e18)
+
+This is how the generated digits looks like:
+
+![150_1](https://github.com/HagaiHen/GenerateDigits/assets/76903853/65e49637-c131-470a-a7fd-d401afe863a7)
